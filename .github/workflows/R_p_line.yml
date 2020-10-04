@@ -1,0 +1,19 @@
+name: R_line
+
+on:
+  workflow_dispatch: 
+  schedule:
+    - cron:  '0 10 * * *'
+
+jobs:
+  scrape_pdf:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@master
+      - name: Install dependencies
+        run: |
+          install.packages(c("EpiNow2", "rstan", "ggplot2", "gridExtra", "incidence", "magrittr", "readr", "knitr", "dplyr"))
+          remotes::install_deps(dependencies = TRUE)
+          Rscript ./Rt_calcs.R
