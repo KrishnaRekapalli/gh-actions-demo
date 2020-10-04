@@ -2,8 +2,8 @@ name: R_line
 
 on:
   workflow_dispatch: 
-  schedule:
-    - cron:  '0 10 * * *'
+#   schedule:
+#     - cron:  '0 10 * * *'
 
 jobs:
   run_r_script:
