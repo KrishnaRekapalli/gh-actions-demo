@@ -6,7 +6,7 @@ on:
     - cron:  '0 10 * * *'
 
 jobs:
-  scrape_pdf:
+  run_r_script:
     runs-on: ubuntu-latest
     
     steps:
@@ -16,4 +16,6 @@ jobs:
         run: |
           install.packages(c("EpiNow2", "rstan", "ggplot2", "gridExtra", "incidence", "magrittr", "readr", "knitr", "dplyr"))
           remotes::install_deps(dependencies = TRUE)
-          Rscript ./Rt_calcs.R
+        shell: Rscript {0}
+      - name: Run R Script
+        shell: Rscript ./Rt_calcs.R
