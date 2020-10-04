@@ -18,4 +18,4 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
       - name: Run R Script
-        shell: Rscript ./Rt_calcs.R
+        run: Rscript ./Rt_calcs.R
