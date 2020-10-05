@@ -16,9 +16,9 @@ jobs:
           r-version: '4.0.0'
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "rcmdcheck", "readr", "ggplot"))
+          install.packages(c("remotes", "rcmdcheck", "readr", "ggplot2"))
           remotes::install_deps(dependencies = TRUE)
           #install.packages(c( "rstan", "gridExtra", "incidence", "magrittr", "readr", "knitr", "dplyr","EpiNow2"))
-        shell: Rscript {0}
+        shell: sudo Rscript {0}
       - name: Run R Script
         run: Rscript ./Rt_calcs.R
