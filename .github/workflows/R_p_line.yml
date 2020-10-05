@@ -13,12 +13,12 @@ jobs:
       #- uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@master
         with:
-          r-version: '3.6.0'
+          r-version: '3.8.0'
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "rcmdcheck"))
+          install.packages(c("remotes", "rcmdcheck", "readr", "ggplot"))
           remotes::install_deps(dependencies = TRUE)
-          install.packages(c( "rstan", "gridExtra", "incidence", "magrittr", "readr", "knitr", "dplyr","EpiNow2"))
+          #install.packages(c( "rstan", "gridExtra", "incidence", "magrittr", "readr", "knitr", "dplyr","EpiNow2"))
         shell: Rscript {0}
       - name: Run R Script
         run: Rscript ./Rt_calcs.R
