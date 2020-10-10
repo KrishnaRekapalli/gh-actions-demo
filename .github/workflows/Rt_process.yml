@@ -1,0 +1,26 @@
+name: R_line
+
+on:
+  workflow_dispatch: 
+#   schedule:
+#     - cron:  '0 10 * * *'
+
+jobs:
+  run_r_script:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out this repo
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install Python dependencies
+        run: |
+          pip install -r requirements.txt
+      - name: Download and scrap data from PDF dashboard file.
+        run: |
+          python rt_mumbai.py
