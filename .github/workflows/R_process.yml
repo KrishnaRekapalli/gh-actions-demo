@@ -17,29 +17,28 @@ jobs:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@master
         with:
-          r-version: '4.0.0'
-#       - name: update apt-get
-#         run: sudo apt-get update -y
-#       - name: install v8
-#         run: sudo apt-get install -y libv8-dev
+          r-version: '3.6.0'
+      - name: update apt-get
+        run: sudo apt-get update -y
+      - name: install v8
+        run: sudo apt-get install -y libv8-dev
       - name: Install remotes
         run: |
           install.packages("remotes", repos = c("CRAN" = Sys.getenv("CRAN_REPO")))
         shell: Rscript {0}
       - name: Install deps
         run: |
-          install.packages("drat")
+          install.packages("drat",lib="/usr/local/lib/R/site-library")
           drat:::add("epiforecasts")
-          install.packages("rstan")
-          install.packages("EpiNow2")
-          install.packages("ggplot2")
-          install.packages("gridExtra")
-          install.packages("incidence")
-          install.packages("magrittr")
-          install.packages("readr")
-          install.packages("knitr")
-          install.packages("dplyr")
-          install.packages("EpiEstim")
+          install.packages("rstan",lib="/usr/local/lib/R/site-library")
+          install.packages("EpiNow2",lib="/usr/local/lib/R/site-library")
+          install.packages("ggplot2",lib="/usr/local/lib/R/site-library")
+          install.packages("gridExtra",lib="/usr/local/lib/R/site-library")
+          install.packages("incidence",lib="/usr/local/lib/R/site-library")
+          install.packages("magrittr",lib="/usr/local/lib/R/site-library")
+          install.packages("readr",lib="/usr/local/lib/R/site-library")
+          install.packages("knitr",lib="/usr/local/lib/R/site-library")
+          install.packages("dplyr",lib="/usr/local/lib/R/site-library")
         shell: Rscript {0}
       - name: Run R script
         run: Rscript  Rt_calcs.R
