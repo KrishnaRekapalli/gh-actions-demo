@@ -26,21 +26,25 @@ jobs:
         run: |
           install.packages("remotes", repos = c("CRAN" = Sys.getenv("CRAN_REPO")))
         shell: Rscript {0}
-      - name: Change perms
-        run: sudo chmod 777 -R /usr/local/lib/R/site-library
+      - name: Install Rstan
+        run: |
+          install.packages("rstan")
+        shell: Rscript {0}
+      - name: Install Epinow2
+        run: |
+          install.packages("EpiNow2")
+        shell: Rscript {0}
       - name: Install deps
         run: |
-          install.packages("drat",lib="/usr/local/lib/R/site-library")
+          install.packages("drat")
           drat:::add("epiforecasts")
-          install.packages("rstan",lib="/usr/local/lib/R/site-library")
-          install.packages("EpiNow2",lib="/usr/local/lib/R/site-library")
-          install.packages("ggplot2",lib="/usr/local/lib/R/site-library")
-          install.packages("gridExtra",lib="/usr/local/lib/R/site-library")
-          install.packages("incidence",lib="/usr/local/lib/R/site-library")
-          install.packages("magrittr",lib="/usr/local/lib/R/site-library")
-          install.packages("readr",lib="/usr/local/lib/R/site-library")
-          install.packages("knitr",lib="/usr/local/lib/R/site-library")
-          install.packages("dplyr",lib="/usr/local/lib/R/site-library")
+          install.packages("ggplot2")
+          install.packages("gridExtra")
+          install.packages("incidence")
+          install.packages("magrittr")
+          install.packages("readr")
+          install.packages("knitr")
+          install.packages("dplyr")
         shell: Rscript {0}
       - name: Run R script
         run: Rscript  Rt_calcs.R
