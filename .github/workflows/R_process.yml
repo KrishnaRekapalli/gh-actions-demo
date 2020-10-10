@@ -26,6 +26,8 @@ jobs:
         run: |
           install.packages("remotes", repos = c("CRAN" = Sys.getenv("CRAN_REPO")))
         shell: Rscript {0}
+      - name: Change perms
+        run: sudo chmod 777 -R /usr/local/lib/R/site-library
       - name: Install deps
         run: |
           install.packages("drat",lib="/usr/local/lib/R/site-library")
