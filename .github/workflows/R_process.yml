@@ -22,4 +22,19 @@ jobs:
         run: |
           install.packages("remotes", repos = c("CRAN" = Sys.getenv("CRAN_REPO")))
         shell: Rscript {0}
+      - name: Install deps
+        run: |
+          install.packages("ggplot2")
+          install.packages("gridExtra")
+          install.packages("incidence")
+          install.packages("magrittr")
+          install.packages("readr")
+          install.packages("knitr")
+          install.packages("dplyr")
+          install.packages("EpiEstim")
+          install.packages("drat")
+          drat:::add("epiforecasts")
+          install.packages("rstan")
+          install.packages("EpiNow2")
+        shell: Rscript {0}
         
