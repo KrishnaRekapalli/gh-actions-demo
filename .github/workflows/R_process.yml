@@ -7,7 +7,7 @@ on:
 
 jobs:
   setup_run_r:
-    runs-on: ubuntu-18.04
+    runs-on: macos-latest
     env:
       PDF_SOURCE: 'http://stopcoronavirus.mcgm.gov.in/assets/docs/Dashboard.pdf'
       PDF_FILE_PATH: '/tmp/stopcovid-dashboard'
@@ -28,6 +28,10 @@ jobs:
         shell: Rscript {0}
       - name: Install deps
         run: |
+          install.packages("drat")
+          drat:::add("epiforecasts")
+          install.packages("rstan")
+          install.packages("EpiNow2")
           install.packages("ggplot2")
           install.packages("gridExtra")
           install.packages("incidence")
@@ -36,10 +40,6 @@ jobs:
           install.packages("knitr")
           install.packages("dplyr")
           install.packages("EpiEstim")
-          install.packages("drat")
-          drat:::add("epiforecasts")
-          install.packages("rstan")
-          install.packages("EpiNow2")
         shell: Rscript {0}
       - name: Run R script
         run: Rscript  Rt_calcs.R
