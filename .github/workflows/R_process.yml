@@ -18,9 +18,9 @@ jobs:
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: '4.0.0'
-        -name: update apt-get
-         run: sudo apt-get update -
-       -name: install v8
+      - name: update apt-get
+        run: sudo apt-get update -y
+      - name: install v8
         run: sudo apt-get install -y libv8-dev
       - name: Install remotes
         run: |
