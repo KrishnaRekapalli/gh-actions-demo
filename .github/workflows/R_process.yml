@@ -1,0 +1,25 @@
+name: R_proc
+
+on:
+  workflow_dispatch: 
+  schedule:
+    - cron:  '0 10 * * *'
+
+jobs:
+  setup_run_r:
+    runs-on: ubuntu-18.04
+    env:
+      PDF_SOURCE: 'http://stopcoronavirus.mcgm.gov.in/assets/docs/Dashboard.pdf'
+      PDF_FILE_PATH: '/tmp/stopcovid-dashboard'
+      CRAN_REPO: 'https://packagemanager.rstudio.com/all/__linux__/bionic/latest'
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@master
+        with:
+          r-version: '4.0.0'
+      - name: Install remotes
+        run: |
+          install.packages("remotes", repos = c("CRAN" = Sys.getenv("CRAN_REPO")))
+        shell: Rscript {0}
+        
