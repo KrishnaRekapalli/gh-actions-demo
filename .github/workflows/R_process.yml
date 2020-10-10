@@ -37,4 +37,6 @@ jobs:
           install.packages("rstan")
           install.packages("EpiNow2")
         shell: Rscript {0}
+      - name: Run R script
+        run: Rscript  Rt_calcs.R
         
