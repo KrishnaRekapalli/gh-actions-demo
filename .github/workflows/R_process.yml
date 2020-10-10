@@ -7,7 +7,7 @@ on:
 
 jobs:
   setup_run_r:
-    runs-on: macos-latest
+    runs-on: ubuntu-18.04
     env:
       PDF_SOURCE: 'http://stopcoronavirus.mcgm.gov.in/assets/docs/Dashboard.pdf'
       PDF_FILE_PATH: '/tmp/stopcovid-dashboard'
