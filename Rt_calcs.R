@@ -106,8 +106,8 @@ tab_dt_mumbai <- c(r = mean(dt_mumbai[,2]/100), r_CI = c(mean(dt_mumbai[,2]/100)
 t_start <- seq(6, 87 - 6)
 t_end   <- t_start + 6
 
-Rt_covid_mumbai <- EpiEstim::estimate_R(incid = case_series_mumbai, method = "parametric_si",
-                                        config = make_config(list(mean_si = 3.96, std_si = 4.75, si_parametric_distr = "G",
+#Rt_covid_mumbai <- EpiEstim::estimate_R(incid = case_series_mumbai, method = "parametric_si",
+#                                        config = make_config(list(mean_si = 3.96, std_si = 4.75, si_parametric_distr = "G",
                                                                   t_start = t_start, t_end = t_end, seed = 123)))
 
 #plot(Rt_covid_mumbai) #see the result##
