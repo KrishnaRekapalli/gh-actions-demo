@@ -28,6 +28,7 @@ suppressMessages(mumbai<-read_csv(myfile))
 case_series_mumbai<-as.numeric(unlist(mumbai[,7])) ## take out delta case##
 tot_cases_mumbai<-as.numeric(unlist(mumbai[,4])) ## take out delta case##
 
+case_dates_mumbai <- unlist(mumbai[,1])
 
 #length(case_series_mumbai)
 
