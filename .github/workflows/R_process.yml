@@ -45,6 +45,7 @@ jobs:
           install.packages("readr")
           install.packages("knitr")
           install.packages("dplyr")
+          install.packages("epiestim")
         shell: Rscript {0}
       - name: Run R script
         run: Rscript  Rt_calcs.R
