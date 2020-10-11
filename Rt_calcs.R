@@ -11,7 +11,7 @@ options(message=-1)
 
 library("EpiNow2")
 library("rstan")
-library(EpiEstim)
+#library(EpiEstim)
 library(ggplot2)
 library("gridExtra")
 library(incidence)
