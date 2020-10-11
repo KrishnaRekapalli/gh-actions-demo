@@ -11,7 +11,7 @@ options(message=-1)
 
 library("EpiNow2")
 library("rstan")
-#library(EpiEstim)
+# library(EpiEstim)
 library(ggplot2)
 library("gridExtra")
 library(incidence)
@@ -28,7 +28,6 @@ suppressMessages(mumbai<-read_csv(myfile))
 case_series_mumbai<-as.numeric(unlist(mumbai[,7])) ## take out delta case##
 tot_cases_mumbai<-as.numeric(unlist(mumbai[,4])) ## take out delta case##
 
-case_dates_mumbai <- unlist(mumbai[,1])
 
 #length(case_series_mumbai)
 
@@ -109,7 +108,7 @@ t_end   <- t_start + 6
 
 #Rt_covid_mumbai <- EpiEstim::estimate_R(incid = case_series_mumbai, method = "parametric_si",
 #                                        config = make_config(list(mean_si = 3.96, std_si = 4.75, si_parametric_distr = "G",
-                                                                  t_start = t_start, t_end = t_end, seed = 123)))
+#                                                                  t_start = t_start, t_end = t_end, seed = 123)))
 
 #plot(Rt_covid_mumbai) #see the result##
 
@@ -139,7 +138,7 @@ estimates_mumbai <- EpiNow2::epinow(reported_cases = mumbai_tab, generation_time
 ###estimates_mumbai$plot
 
 #compare result##
-Rt_Epiestim <- cbind(mumbai_tab[unlist(Rt_covid_mumbai$R[ 2]),1],Rt_covid_mumbai$R[,c (8, 5, 11)])
+#Rt_Epiestim <- cbind(mumbai_tab[unlist(Rt_covid_mumbai$R[ 2]),1],Rt_covid_mumbai$R[,c (8, 5, 11)])
 
 Rt_EpiNow2 <- estimates_mumbai$estimates$summarised[which(estimates_mumbai$estimates$summarised[,"variable"]=="R" & estimates_mumbai$estimates$summarised[,"type"]=="estimate"),]
 #Rt_EpiNow2 <- Rt_EpiNow2[which(unlist(Rt_EpiNow2[,1]) %in% unlist(Rt_Epiestim[,1])) ,c(1, 9, 7,8)] 
