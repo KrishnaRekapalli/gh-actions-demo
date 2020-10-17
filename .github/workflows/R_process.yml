@@ -49,4 +49,21 @@ jobs:
         shell: Rscript {0}
       - name: Run R script
         run: Rscript  Rt_calcs.R
+      
+      - uses: actions/upload-artifact@v2
+        with:
+          name: csv
+          path: v1/r_out
+      - run: |
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git stash save -u -a
+            git fetch origin gh-pages
+            git checkout gh-pages
+            git pull --no-edit origin gh-pages
+            git stash apply
+            git add v1/*
+            git commit -m "pushing result csv"
+            git pull --no-edit origin gh-pages
+            git push
         
