@@ -157,4 +157,4 @@ Rt_EpiNow2 <- estimates_mumbai$estimates$summarised[which(estimates_mumbai$estim
 
 #tab_dt
 
-write.csv(Rt_EpiNow2,'Rt_EpiNow2.csv')
+write.csv(Rt_EpiNow2,'./v1/r_out/epinow2_out.csv')
