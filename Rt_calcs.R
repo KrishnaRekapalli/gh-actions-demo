@@ -21,7 +21,7 @@ library(knitr)  # for kable
 library(dplyr)
 
 
-myfile <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vRlIadXzFkZNn5kijxCWx3IHfwvFIJQEMy9UEwm9uCjvWwVtbu9UdYnhPV9SlijmvlnytfcZjW0sp9B/pub?gid=533672872&single=true&output=csv"
+myfile <- "/usr/city_stats.csv"
 suppressMessages(mumbai<-read_csv(myfile))
 #kable(head(mumbai))
 
