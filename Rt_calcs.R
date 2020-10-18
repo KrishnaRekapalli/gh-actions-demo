@@ -22,12 +22,15 @@ library(dplyr)
 
 
 myfile <- "/usr/data/city_stats.csv"
-suppressMessages(mumbai<-read_csv(myfile))
+suppressMessages(mumbai_new<-read_csv(myfile))
 #kable(head(mumbai))
 
-case_series_mumbai<-as.numeric(unlist(mumbai[,7])) ## take out delta case##
-tot_cases_mumbai<-as.numeric(unlist(mumbai[,4])) ## take out delta case##
-case_dates_mumbai <- unlist(mumbai[,1])
+
+mumbai_filtered = mumbai_new[mumbai_new$district == 'Mumbai',]
+mumbai_filtered <- na.omit(mumbai_filtered) 
+case_series_mumbai<-as.numeric(unlist(mumbai_filtered[,"delta.confirmed"])) ## take out delta case##
+tot_cases_mumbai<-as.numeric(unlist(mumbai_filtered[,"total.confirmed"])) ## take out delta case##
+case_dates_mumbai <- unlist(mumbai_filtered[,"date"])
 
 
 #length(case_series_mumbai)
