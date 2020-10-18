@@ -21,7 +21,7 @@ library(knitr)  # for kable
 library(dplyr)
 
 
-myfile <- "/usr/city_stats.csv"
+myfile <- "/usr/data/city_stats.csv"
 suppressMessages(mumbai<-read_csv(myfile))
 #kable(head(mumbai))
 
