@@ -14,8 +14,12 @@ jobs:
       CRAN_REPO: 'https://packagemanager.rstudio.com/all/__linux__/bionic/latest'
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: r-lib/actions/setup-r@master
+      - name: chekout this repo
+        uses: actions/checkout@v2
+        with: 
+          ref: ${{ github.head_ref }}
+      - name:  setup R
+        uses: r-lib/actions/setup-r@master
         with:
           r-version: '3.6.0'
       - name: update apt-get
@@ -58,12 +62,12 @@ jobs:
             git config user.name github-actions
             git config user.email github-actions@github.com
             git stash save -u -a
-            git fetch origin gh-pages
-            git checkout gh-pages
-            git pull --no-edit origin gh-pages
+            git fetch origin master
+            git checkout master
+            git pull --no-edit origin master
             git stash apply
             git add v1/*
             git commit -m "pushing result csv"
-            git pull --no-edit origin gh-pages
+            git pull --no-edit origin master
             git push
         
