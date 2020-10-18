@@ -34,11 +34,7 @@ jobs:
           sudo chmod -R 777 /usr/data/
           wget  -O /usr/data/city_stats.csv "https://docs.google.com/spreadsheets/d/e/2PACX-1vRlIadXzFkZNn5kijxCWx3IHfwvFIJQEMy9UEwm9uCjvWwVtbu9UdYnhPV9SlijmvlnytfcZjW0sp9B/pub?gid=533672872&single=true&output=csv"
           echo "downloaded the file to machine"
-      - name: test R read
-        run: | 
-          library(readr)
-          read_csv("/usr/data/city_stats.csv")
-        shell: Rscript {0}
+
       - name: Install remotes
         run: |
           install.packages("remotes", repos = c("CRAN" = Sys.getenv("CRAN_REPO")))
