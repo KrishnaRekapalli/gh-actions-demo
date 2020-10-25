@@ -44,7 +44,7 @@ jobs:
         shell: Rscript {0}
       - name: Install Epinow2
         run: |
-          install.packages(‘cowplot’, ‘data.table’, ‘futile.logger’, ‘future.apply’, ‘HDInterval’, ‘lubridate’, ‘patchwork’, ‘purrr’, ‘rstantools’, ‘truncnorm’)
+          install.packages("cowplot", "data.table", "futile.logger", "future.apply", "HDInterval", "lubridate", "patchwork", "purrr", "rstantools", "truncnorm")
           packageurl <- "https://cran.r-project.org/src/contrib/Archive/EpiNow2/EpiNow2_1.1.0.tar.gz"
           install.packages(packageurl, repos=NULL, type="source")
           #install.packages("EpiNow2")
