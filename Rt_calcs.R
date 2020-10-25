@@ -21,13 +21,16 @@ library(knitr)  # for kable
 library(dplyr)
 
 
-myfile <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vRlIadXzFkZNn5kijxCWx3IHfwvFIJQEMy9UEwm9uCjvWwVtbu9UdYnhPV9SlijmvlnytfcZjW0sp9B/pub?gid=533672872&single=true&output=csv"
-suppressMessages(mumbai<-read_csv(myfile))
+myfile <- "/usr/data/city_stats.csv"
+suppressMessages(mumbai_new<-read_csv(myfile))
 #kable(head(mumbai))
 
-case_series_mumbai<-as.numeric(unlist(mumbai[,7])) ## take out delta case##
-tot_cases_mumbai<-as.numeric(unlist(mumbai[,4])) ## take out delta case##
-case_dates_mumbai <- unlist(mumbai[,1])
+
+mumbai_filtered = mumbai_new[mumbai_new$district == 'Mumbai',]
+mumbai_filtered <- na.omit(mumbai_filtered) 
+case_series_mumbai<-as.numeric(unlist(mumbai_filtered[,"delta.confirmed"])) ## take out delta case##
+tot_cases_mumbai<-as.numeric(unlist(mumbai_filtered[,"total.confirmed"])) ## take out delta case##
+case_dates_mumbai <- unlist(mumbai_filtered[,"date"])
 
 
 #length(case_series_mumbai)
