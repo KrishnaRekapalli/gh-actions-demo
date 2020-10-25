@@ -44,6 +44,7 @@ jobs:
         shell: Rscript {0}
       - name: Install Epinow2
         run: |
+          install.packages(‘cowplot’, ‘data.table’, ‘futile.logger’, ‘future.apply’, ‘HDInterval’, ‘lubridate’, ‘patchwork’, ‘purrr’, ‘rstantools’, ‘truncnorm’)
           packageurl <- "https://cran.r-project.org/src/contrib/Archive/EpiNow2/EpiNow2_1.1.0.tar.gz"
           install.packages(packageurl, repos=NULL, type="source")
           #install.packages("EpiNow2")
@@ -54,12 +55,12 @@ jobs:
           drat:::add("epiforecasts")
           install.packages("ggplot2")
           install.packages("gridExtra")
-          install.packages("incidence")
+          #install.packages("incidence")
           install.packages("magrittr")
           install.packages("readr")
           install.packages("knitr")
           install.packages("dplyr")
-          install.packages("EpiEstim")
+          #install.packages("EpiEstim")
         shell: Rscript {0}
       - name: Run R script
         run: Rscript  Rt_calcs.R
