@@ -38,10 +38,6 @@ jobs:
         run: |
           install.packages("remotes", repos = c("CRAN" = Sys.getenv("CRAN_REPO")))
         shell: Rscript {0}
-      - name: Install Rstan
-        run: |
-          install.packages("rstan")
-        shell: Rscript {0}
       - name: Install Epinow2
         run: |
           install.packages("cowplot", "data.table", "futile.logger", "future.apply", "HDInterval", "lubridate", "patchwork", "purrr", "rstantools", "truncnorm")
@@ -49,6 +45,11 @@ jobs:
           install.packages(packageurl, repos=NULL, type="source")
           #install.packages("EpiNow2")
         shell: Rscript {0}
+      - name: Install Rstan
+        run: |
+          install.packages("rstan")
+        shell: Rscript {0}
+
       - name: Install deps
         run: |
           install.packages("drat")
