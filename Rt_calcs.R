@@ -104,11 +104,8 @@ dt_mumbai <-dt_mumbai[is.na(dt_mumbai[,2])==F, ]
 tab_dt_mumbai <- c(r = mean(dt_mumbai[,2]/100), r_CI = c(mean(dt_mumbai[,2]/100) + qnorm(0.025)*sd(dt_mumbai[,2]/100), mean(dt_mumbai[,2]/100) + qnorm(1-0.025)*sd(dt_mumbai[,2]/100)),
                    doubling_time = mean(dt_mumbai[,3]), dt_CI = c(mean(dt_mumbai[,3]) + qnorm(0.025)*sd(dt_mumbai[,3]), mean(dt_mumbai[,3]) + qnorm(1-0.025)*sd(dt_mumbai[,3])))
 
+write.csv(tab_dt_mumbai,'./v1/r_out/dt_out.csv')
 
-
-##old Rt: EpiEstim##
-t_start <- seq(6, 87 - 6)
-t_end   <- t_start + 6
 
 #Rt_covid_mumbai <- EpiEstim::estimate_R(incid = case_series_mumbai, method = "parametric_si",
 #                                        config = make_config(list(mean_si = 3.96, std_si = 4.75, si_parametric_distr = "G",
@@ -141,23 +138,11 @@ estimates_mumbai <- EpiNow2::epinow(reported_cases = mumbai_tab, generation_time
 ##estimates_mumbai$summary
 ###estimates_mumbai$plot
 
-#compare result##
-#Rt_Epiestim <- cbind(mumbai_tab[unlist(Rt_covid_mumbai$R[ 2]),1],Rt_covid_mumbai$R[,c (8, 5, 11)])
 
 Rt_EpiNow2 <- estimates_mumbai$estimates$summarised[which(estimates_mumbai$estimates$summarised[,"variable"]=="R" & estimates_mumbai$estimates$summarised[,"type"]=="estimate"),]
-#Rt_EpiNow2 <- Rt_EpiNow2[which(unlist(Rt_EpiNow2[,1]) %in% unlist(Rt_Epiestim[,1])) ,c(1, 9, 7,8)] 
 
 
 
-#tab_Rt <- cbind(Rt_Epiestim, Rt_EpiNow2[,-1])
-#colnames(tab_Rt) <- c("date", "R_med_EpiEstim", "R_low_EpiEstim",  "R_up_EpiEstim", 
-#      "R_med_EpiNow2", "R_low_EpiNow2",  "R_up_EpiNow2")
-#tab_Rt
-#write.csv(tab_Rt, "mumbai_Rt.csv")
-#tab_dt <- rbind(incidence = info_list$tab, Epinow = c(unlist(estimates_mumbai$summary[4,]$numeric_estimate)[1:3], unlist(estimates_mumbai$summary[5,]$numeric_estimate)),
-#                covid1i_india =   tab_dt_mumbai )
-#colnames(tab_dt) <- c("r", "r_low",  "r_up",  "doubling time", "dt_low",  "dt_up")
 
-#tab_dt
 
 write.csv(Rt_EpiNow2,'./v1/r_out/epinow2_out.csv')
