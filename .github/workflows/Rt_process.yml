@@ -21,6 +21,11 @@ jobs:
       - name: Install Python dependencies
         run: |
           pip install -r requirements.txt
-      - name: Download and scrap data from PDF dashboard file.
-        run: |
-          python rt_mumbai.py
+
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '290.0.1'
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+          export_default_credentials: true
+      - run: gcloud info
