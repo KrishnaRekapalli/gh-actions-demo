@@ -43,10 +43,6 @@ jobs:
         run: |
           require(devtools)
           install_version("EpiNow2", version = "1.1.0", repos = "http://cran.us.r-project.org")
-          #install.packages("cowplot", "HDInterval", "lubridate", "patchwork", "purrr", "rstantools", "truncnorm")
-          #packageurl <- "https://cran.r-project.org/src/contrib/Archive/EpiNow2/EpiNow2_1.1.0.tar.gz"
-          #install.packages(packageurl, repos=NULL, type="source")
-          #install.packages("EpiNow2")
         shell: Rscript {0}
       - name: Install Rstan
         run: |
