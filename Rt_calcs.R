@@ -104,7 +104,7 @@ dt_mumbai <-dt_mumbai[is.na(dt_mumbai[,2])==F, ]
 tab_dt_mumbai <- c(r = mean(dt_mumbai[,2]/100), r_CI = c(mean(dt_mumbai[,2]/100) + qnorm(0.025)*sd(dt_mumbai[,2]/100), mean(dt_mumbai[,2]/100) + qnorm(1-0.025)*sd(dt_mumbai[,2]/100)),
                    doubling_time = mean(dt_mumbai[,3]), dt_CI = c(mean(dt_mumbai[,3]) + qnorm(0.025)*sd(dt_mumbai[,3]), mean(dt_mumbai[,3]) + qnorm(1-0.025)*sd(dt_mumbai[,3])))
 
-
+write.csv(tab_dt_mumbai,'/usr/data/tab_dt_mumbai.csv')
 
 ##old Rt: EpiEstim##
 t_start <- seq(6, 87 - 6)
@@ -160,4 +160,4 @@ Rt_EpiNow2 <- estimates_mumbai$estimates$summarised[which(estimates_mumbai$estim
 
 #tab_dt
 
-write.csv(Rt_EpiNow2,'./v1/r_out/epinow2_out.csv')
+write.csv(Rt_EpiNow2,'/usr/data/epinow2_out.csv')
