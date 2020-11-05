@@ -42,25 +42,25 @@ case_dates_mumbai <- unlist(mumbai_filtered[,"date"])
 mumbai_tab <- data.frame(date= as.Date(case_dates_mumbai,  origin = "1970-01-01"), confirm=case_series_mumbai)
 
 
-mumbai_tab2 <- mumbai_tab[-1,]
-mumbai_tab3 <- data.frame(date= as.Date(case_dates_mumbai,  origin = "1970-01-01"), tot_cases=tot_cases_mumbai)
+# mumbai_tab2 <- mumbai_tab[-1,]
+# mumbai_tab3 <- data.frame(date= as.Date(case_dates_mumbai,  origin = "1970-01-01"), tot_cases=tot_cases_mumbai)
 
-##this part is from {incidence}##
-mumbai_tab2$dates.x <- (case_dates_mumbai[-1] -  case_dates_mumbai[-length(case_dates_mumbai)])/2
-lm1 <- stats::lm(log(confirm) ~ dates.x, data = mumbai_tab2)
+# ##this part is from {incidence}##
+# mumbai_tab2$dates.x <- (case_dates_mumbai[-1] -  case_dates_mumbai[-length(case_dates_mumbai)])/2
+# lm1 <- stats::lm(log(confirm) ~ dates.x, data = mumbai_tab2)
 
-r <- stats::coef(lm1)["dates.x"]
-r.conf <- stats::confint(lm1, "dates.x", 0.95)
-new.data <- data.frame(dates.x = sort(unique(lm1$model$dates.x)))
-pred     <- exp(stats::predict(lm1, newdata = new.data, interval = "confidence", level = 0.95))
-pred <- cbind.data.frame(new.data, pred)
-info_list <- list(
-  tab = round(c(r = r,
-                r.conf = r.conf,
-                doubling = log(2) / r,
-                doubling.conf = log(2) / r.conf),4),
-  pred = pred
-)
+# r <- stats::coef(lm1)["dates.x"]
+# r.conf <- stats::confint(lm1, "dates.x", 0.95)
+# new.data <- data.frame(dates.x = sort(unique(lm1$model$dates.x)))
+# pred     <- exp(stats::predict(lm1, newdata = new.data, interval = "confidence", level = 0.95))
+# pred <- cbind.data.frame(new.data, pred)
+# info_list <- list(
+#   tab = round(c(r = r,
+#                 r.conf = r.conf,
+#                 doubling = log(2) / r,
+#                 doubling.conf = log(2) / r.conf),4),
+#   pred = pred
+# )
 #info_list
 
 
@@ -148,8 +148,13 @@ estimates_mumbai <- EpiNow2::epinow(reported_cases = mumbai_tab, generation_time
 #compare result##
 #Rt_Epiestim <- cbind(mumbai_tab[unlist(Rt_covid_mumbai$R[ 2]),1],Rt_covid_mumbai$R[,c (8, 5, 11)])
 
-Rt_EpiNow2 <- estimates_mumbai$estimates$summarised[which(estimates_mumbai$estimates$summarised[,"variable"]=="R" & estimates_mumbai$estimates$summarised[,"type"]=="estimate"),]
+#Rt_EpiNow2 <- estimates_mumbai$estimates$summarised[which(estimates_mumbai$estimates$summarised[,"variable"]=="R" & estimates_mumbai$estimates$summarised[,"type"]=="estimate"),]
 #Rt_EpiNow2 <- Rt_EpiNow2[which(unlist(Rt_EpiNow2[,1]) %in% unlist(Rt_Epiestim[,1])) ,c(1, 9, 7,8)] 
+Rt_EpiNow2 <- estimates_mumbai$estimates$summarised[which(estimates_mumbai$estimates$summarised[,"variable"]=="R" &
+                                                           ( (estimates_mumbai$estimates$summarised[,"type"]=="estimate") |
+                                                             (estimates_mumbai$estimates$summarised[,"type"]=="estimate based on partial data") |
+                                                             (estimates_mumbai$estimates$summarised[,"type"]=="forecast")))]
+
 
 
 
