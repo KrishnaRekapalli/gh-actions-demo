@@ -42,8 +42,8 @@ case_dates_mumbai <- unlist(mumbai_filtered[,"date"])
 mumbai_tab <- data.frame(date= as.Date(case_dates_mumbai,  origin = "1970-01-01"), confirm=case_series_mumbai)
 
 
-# mumbai_tab2 <- mumbai_tab[-1,]
-# mumbai_tab3 <- data.frame(date= as.Date(case_dates_mumbai,  origin = "1970-01-01"), tot_cases=tot_cases_mumbai)
+mumbai_tab2 <- mumbai_tab[-1,]
+mumbai_tab3 <- data.frame(date= as.Date(case_dates_mumbai,  origin = "1970-01-01"), tot_cases=tot_cases_mumbai)
 
 # ##this part is from {incidence}##
 # mumbai_tab2$dates.x <- (case_dates_mumbai[-1] -  case_dates_mumbai[-length(case_dates_mumbai)])/2
@@ -108,7 +108,7 @@ dt_mumbai <-dt_mumbai[is.na(dt_mumbai[,2])==F, ]
 tab_dt_mumbai <- c(r = mean(dt_mumbai[,2]/100), r_CI = c(mean(dt_mumbai[,2]/100) + qnorm(0.025)*sd(dt_mumbai[,2]/100), mean(dt_mumbai[,2]/100) + qnorm(1-0.025)*sd(dt_mumbai[,2]/100)),
                    doubling_time = mean(dt_mumbai[,3]), dt_CI = c(mean(dt_mumbai[,3]) + qnorm(0.025)*sd(dt_mumbai[,3]), mean(dt_mumbai[,3]) + qnorm(1-0.025)*sd(dt_mumbai[,3])))
 
-write.csv(tab_dt_mumbai,'/usr/data/tab_dt_mumbai.csv')
+write.csv(dt_mumbai,'/usr/data/dt_mumbai.csv')
 
 ##old Rt: EpiEstim##
 t_start <- seq(6, 87 - 6)
