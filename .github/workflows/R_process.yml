@@ -33,6 +33,8 @@ jobs:
           sudo chmod -R 777 /usr/data/
           wget  -O /usr/data/city_stats.csv $CSV_DATA_SOURCE
           echo "downloaded the file to machine"
+          echo "downloading the epinow2"
+          wget https://github.com/KrishnaRekapalli/gh-actions-demo/blob/main/EpiNow2_1.3.2.tar.gz?raw=true -P /usr/data/
 
       - name: Install remotes
         run: |
@@ -42,7 +44,8 @@ jobs:
       - name: Install Epinow2
         run: |
           require(devtools)
-          install_version("EpiNow2", version = "1.1.0", repos = "http://cran.us.r-project.org")
+          install.packages("/usr/data/EpiNow2_1.3.2.tar.gz", repos = NULL, type="source")
+          #install_version("EpiNow2", version = "1.1.0", repos = "http://cran.us.r-project.org")
         shell: Rscript {0}
       - name: Install Rstan
         run: |
