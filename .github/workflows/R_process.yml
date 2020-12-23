@@ -34,7 +34,7 @@ jobs:
           wget  -O /usr/data/city_stats.csv $CSV_DATA_SOURCE
           echo "downloaded the file to machine"
           echo "downloading the epinow2"
-          wget https://github.com/KrishnaRekapalli/gh-actions-demo/blob/main/EpiNow2_1.3.2.tar.gz?raw=true -P /usr/data/
+          wget https://github.com/KrishnaRekapalli/gh-actions-demo/blob/main/EpiNow2_1.3.2.tar.gz -P /usr/data/
 
       - name: Install remotes
         run: |
